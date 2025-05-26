@@ -92,19 +92,12 @@ public class ProductoController {
     // GET /api/v1/productos/{codigo}
     //Busca un producto por código
     @GetMapping("/{codigo}")
-    public ResponseEntity<?> getByCodigo(@PathVariable String codigo) {
+    public ResponseEntity<?> getByCodigo(@PathVariable int codigo) {
         Producto p = productoService.getByCodigo(codigo);
         if (p != null) {
             return ResponseEntity.ok(p);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
-    }
-
-    // GET /api/v1/productos/categoria/{nombre} → Busca productos por categoría
-    @GetMapping("/categoria/{nombre}")
-    public ResponseEntity<List<Producto>> getByCategoria(@PathVariable String nombre) {
-        List<Producto> productos = productoService.buscarPorCategoria(nombre);
-        return ResponseEntity.ok(productos);
     }
 
     // POST /api/v1/productos → Crea un nuevo producto
@@ -113,5 +106,27 @@ public class ProductoController {
         Producto creado = productoService.add(nuevoProducto);
         return ResponseEntity.status(HttpStatus.CREATED).body(creado);
     }
+
+    // PUT /api/v1/productos/{codigo} → Actualiza un producto existente
+    @PutMapping("/{codigo}")
+    public ResponseEntity<?> update(@PathVariable int codigo, @RequestBody Producto producto) {
+        Producto actualizado = productoService.update(codigo, producto);
+        if (actualizado != null) {
+            return ResponseEntity.ok(actualizado);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
+    }
+
+    // DELETE /api/v1/productos/{codigo} → Elimina un producto por código
+    @DeleteMapping("/{codigo}")
+    public ResponseEntity<?> delete(@PathVariable int codigo) {
+        Producto eliminado = productoService.delete(codigo);
+        if (eliminado != null) {
+            return ResponseEntity.ok(eliminado);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
+    }
+
+    
 }
 
