@@ -100,14 +100,14 @@ public class ProductoController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
     }
 
-    // POST /api/v1/productos → Crea un nuevo producto
+    // POST /api/v1/productos 
     @PostMapping
     public ResponseEntity<?> add(@RequestBody Producto nuevoProducto) {
         Producto creado = productoService.add(nuevoProducto);
         return ResponseEntity.status(HttpStatus.CREATED).body(creado);
     }
 
-    // PUT /api/v1/productos/{codigo} → Actualiza un producto existente
+    // PUT /api/v1/productos/{codigo} 
     @PutMapping("/{codigo}")
     public ResponseEntity<?> update(@PathVariable int codigo, @RequestBody Producto producto) {
         Producto actualizado = productoService.update(codigo, producto);
@@ -117,7 +117,7 @@ public class ProductoController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
     }
 
-    // DELETE /api/v1/productos/{codigo} → Elimina un producto por código
+    // DELETE /api/v1/productos/{codigo}
     @DeleteMapping("/{codigo}")
     public ResponseEntity<?> delete(@PathVariable int codigo) {
         Producto eliminado = productoService.delete(codigo);

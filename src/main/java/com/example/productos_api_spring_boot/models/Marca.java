@@ -1,5 +1,9 @@
 package com.example.productos_api_spring_boot.models;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,9 +18,9 @@ public class Marca {
 
     @Id
     private int codigo;
-    private String marca;
+    private String nombre;
+    @JsonIgnore
 
-    @OneToMany
-    @JoinColumn(name = "codigo_productos", referencedColumnName = "id")
-    private Producto productos;
+    @OneToMany(mappedBy = "marca")
+    private List<Producto> productos;
 }

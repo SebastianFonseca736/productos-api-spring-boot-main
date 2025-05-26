@@ -34,6 +34,16 @@ public class MarcaService {
         return marcaRepository.save(marca);
     }
 
+    
+    // Actualizar una marca existente
+    public Marca update(int codigo, Marca marca) {
+        if (marcaRepository.existsById(codigo)) {
+            marca.setCodigo(codigo);
+            return marcaRepository.save(marca);
+        }
+        return null;
+    }
+
     // Eliminar una marca por su id
     public Marca delete(int id) {
         Optional<Marca> marca = marcaRepository.findById(id);

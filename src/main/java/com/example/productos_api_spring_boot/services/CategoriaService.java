@@ -34,6 +34,16 @@ public class CategoriaService {
         return categoriaRepository.save(categoria);
     }
 
+    
+    // Actualizar una categoría existente
+    public Categoria update(int codigo, Categoria categoria) {
+        if (categoriaRepository.existsById(codigo)) {
+            categoria.setCodigo(codigo);
+            return categoriaRepository.save(categoria);
+        }
+        return null;
+    }
+
     // Eliminar una categoría por su id
     public Categoria delete(int id) {
         Optional<Categoria> categoria = categoriaRepository.findById(id);

@@ -1,28 +1,15 @@
 package com.example.productos_api_spring_boot.models;
 
-import jakarta.persistence.*;
-import lombok.*;
-//import java.util.List;
-//import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 
-// @Data
-// @AllArgsConstructor
-// @NoArgsConstructor
-
-// public class Producto {
-//     private String codigo;
-//     private String nombre;    
-//     private String categoria;
-
-//     private int precio;
-// }
+import jakarta.persistence.*;
+import lombok.*;
 
 
 // PRUEBA CON SERVICES 
 
 @Entity
-@Table(name = "producto")
+@Table(name = "productos")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,11 +21,14 @@ public class Producto {
     private String descripcion;
     private int precio;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Marca> marcas;
+    @ManyToOne
+    //private List<Marca> marcas; (hablar con el profe y descubrir que pasa) 
+    private Marca marca;
+    @ManyToOne
+    //private List<Categoria> categoria;(hablar con el profe y descubrir que pasa) 
+    private Categoria categoria;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Categoria> categorias;
-    // @JsonIgnore
+
+   
 }
 
