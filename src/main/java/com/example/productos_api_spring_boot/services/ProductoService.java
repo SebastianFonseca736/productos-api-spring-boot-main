@@ -52,4 +52,11 @@ public class ProductoService {
         }
         return null; 
     }
+
+    // Buscar productos por categoria
+    public List<Producto> getByCategoria(String categoria) {
+        return productoRepository.findByCategoria(categoria);
+    }
+
+
 }

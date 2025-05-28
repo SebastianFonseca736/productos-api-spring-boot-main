@@ -127,6 +127,15 @@ public class ProductoController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
     }
 
+    // GET /api/v1/productos/categoria/{categoria}
+    @GetMapping("/categoria/{categoria}")   
+    public ResponseEntity<List<Producto>> getByCategoria(@PathVariable String categoria) {
+        List<Producto> productos = productoService.getByCategoria(categoria);
+        if (productos.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(productos);
+        }
+        return ResponseEntity.ok(productos);
+    }
     
 }
 

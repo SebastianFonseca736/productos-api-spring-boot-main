@@ -17,10 +17,12 @@ import lombok.*;
 public class Marca {
 
     @Id
-    private int codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "codigo")
+    private Integer codigo;
     private String nombre;
     @JsonIgnore
 
     @OneToMany(mappedBy = "marca")
-    private List<Producto> productos;
-}
+    private List<Producto> productos; // Relación OneToMany con la entidad Producto
+    }

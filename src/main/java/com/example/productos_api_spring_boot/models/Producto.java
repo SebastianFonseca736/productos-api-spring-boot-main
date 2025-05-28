@@ -16,19 +16,17 @@ import lombok.*;
 
 public class Producto {
     @Id
-    private int codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "codigo")
+    private Integer codigo;
     private String nombre;
     private String descripcion;
     private int precio;
-
+    private String categoria;
+   // ...otros imports...
     @ManyToOne
-    //private List<Marca> marcas; (hablar con el profe y descubrir que pasa) 
+    @JoinColumn(name = "marca")
     private Marca marca;
-    @ManyToOne
-    //private List<Categoria> categoria;(hablar con el profe y descubrir que pasa) 
-    private Categoria categoria;
 
-
-   
 }
 
