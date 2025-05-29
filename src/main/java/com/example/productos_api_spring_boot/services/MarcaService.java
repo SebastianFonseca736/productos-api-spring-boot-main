@@ -26,13 +26,12 @@ public class MarcaService {
         return marca.orElse(null);
     }
 
-    // Crear una nueva marca
     public Marca add(Marca marca) {
-        if (marcaRepository.existsById(marca.getCodigo())) {
-            return null;
-        }
-        return marcaRepository.save(marca);
+    if (marca.getCodigo() != null && marcaRepository.existsById(marca.getCodigo())) {
+        return null;
     }
+    return marcaRepository.save(marca);
+}
 
     
     // Actualizar una marca existente

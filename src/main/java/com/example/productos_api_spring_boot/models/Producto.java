@@ -23,10 +23,8 @@ public class Producto {
     private String descripcion;
     private int precio;
     private String categoria;
-   // ...otros imports...
-    @ManyToOne
-    @JoinColumn(name = "marca")
-    private Marca marca;
 
+    @OneToMany(mappedBy = "producto")
+    private List<Marca> marcas;
 }
 

@@ -23,6 +23,7 @@ public class Marca {
     private String nombre;
     @JsonIgnore
 
-    @OneToMany(mappedBy = "marca")
-    private List<Producto> productos; // Relación OneToMany con la entidad Producto
+    @ManyToOne
+    @JoinColumn(name = "codigo_productos", nullable = false)
+    private Producto producto;   
     }

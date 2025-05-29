@@ -28,11 +28,11 @@ public class ProductoService {
 
     // Crear un nuevo producto
     public Producto add(Producto producto) {
-        if (productoRepository.existsById(producto.getCodigo())) {
-            return null;
-        }
-        return productoRepository.save(producto); 
+    if (producto.getCodigo() != null && productoRepository.existsById(producto.getCodigo())) {
+        return null;
     }
+    return productoRepository.save(producto); 
+}   
 
     // Actualizar un producto existente
     public Producto update(int codigo, Producto producto) {
